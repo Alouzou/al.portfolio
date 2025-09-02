@@ -47,6 +47,11 @@
               >À propos</a
             >
             <a
+              href="#experience_section"
+              class="block text-gray-400 hover:text-white pl-3"
+              >Expérience</a
+            >
+            <a
               href="#skills_section"
               class="block text-gray-400 hover:text-white pl-3"
               >Compétences</a
@@ -55,6 +60,11 @@
               href="#projects_section"
               class="block text-gray-400 hover:text-white pl-3"
               >Projets</a
+            >
+            <a
+              href="#certifications_section"
+              class="block text-gray-400 hover:text-white pl-3"
+              >Certifications</a
             >
             <a href="#form" class="block text-gray-400 hover:text-white pl-3"
               >Contact</a
@@ -94,7 +104,7 @@
                 <span class="text-gray-400 md:w-1/4 font-semibold"
                   >Mars - Juin 2024</span
                 >
-                <!-- font-bold text-lg text-gray-100 -->
+
                 <div>
                   <span class="font-bold text-lg text-gray-100">
                     Stagiaire en développement web ·
@@ -436,6 +446,18 @@
                 >
               </div>
             </li>
+            <li
+              class="bg-[#16213e] rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between"
+            >
+              <div>
+                <span class="font-semibold text-gray-100"
+                  >Scrum Master Certifié</span
+                >
+                <span class="block text-gray-400 text-sm"
+                  >Prévue : Juin 2026</span
+                >
+              </div>
+            </li>
           </ul>
         </section>
         <section id="form">
@@ -497,4 +519,52 @@
     </div>
   </body>
   <script src="index.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = [
+        { id: "about", nav: "À propos" },
+        { id: "skills_section", nav: "Compétences" },
+        { id: "projects_section", nav: "Projets" },
+        { id: "form", nav: "Contact" },
+        { id: "experience_section", nav: "Expérience" },
+        { id: "certifications_section", nav: "Certifications" },
+      ];
+      const navLinks = Array.from(document.querySelectorAll("nav a"));
+
+      function onScroll() {
+        let current = "";
+        for (const section of sections) {
+          const el = document.getElementById(section.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom > 100) {
+              current = section.id;
+            }
+          }
+        }
+        navLinks.forEach((link) => {
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add(
+              "font-medium",
+              "text-white",
+              "border-l-4",
+              "border-sky-400"
+            );
+            link.classList.remove("text-gray-400");
+          } else {
+            link.classList.remove(
+              "font-medium",
+              "text-white",
+              "border-l-4",
+              "border-sky-400"
+            );
+            link.classList.add("text-gray-400");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", onScroll);
+      onScroll();
+    });
+  </script>
 </html>

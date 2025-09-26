@@ -3,10 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -19,170 +17,368 @@
       referrerpolicy="no-referrer"
     />
     <title>Amine O. - Portfolio</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="public/projects/logo_generated.jpg"
-    />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .glow {
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      }
+      .typing::after {
+        content: "|";
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #38bdf8, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+      .skill-tag:hover {
+        background: linear-gradient(135deg, #38bdf8, #06b6d4);
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+      }
+      .nav-link {
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(135deg, #38bdf8, #06b6d4);
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+      }
+      .nav-link.active::before {
+        transform: scaleY(1);
+      }
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .slide-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+      }
+      .slide-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .progress-bar {
+        height: 3px;
+        background: linear-gradient(135deg, #38bdf8, #06b6d4);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1s ease;
+      }
+      .progress-bar.animate {
+        transform: scaleX(1);
+      }
+    </style>
   </head>
-  <body class="bg-[#0a1120] text-gray-100 font-poppins">
-    <div class="min-h-screen flex flex-col md:flex">
+  <body class="bg-[#0a1120] text-gray-100 font-poppins overflow-x-hidden">
+    <!-- Animated background -->
+    <div class="fixed inset-0 opacity-5">
+      <div
+        class="absolute top-20 left-20 w-72 h-72 bg-sky-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"
+      ></div>
+      <div
+        class="absolute top-40 right-20 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"
+      ></div>
+      <div
+        class="absolute bottom-20 left-1/2 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"
+      ></div>
+    </div>
+
+    <div class="min-h-screen flex flex-col md:flex-row relative z-10">
       <aside
-        class="w-full md:w-1/3 md:fixed md:inset-y-0 md:left-0 md:h-screen flex flex-col justify-between p-8 bg-[#0a1120] z-10"
+        class="w-full md:w-1/3 md:fixed md:inset-y-0 md:left-0 md:h-screen flex flex-col justify-between p-8 bg-[#0a1120] z-20 backdrop-blur-sm"
       >
         <div>
-          <h1 class="text-4xl font-bold mb-2">Amine O.</h1>
-          <h2 class="text-xl text-gray-300 font-semibold mb-4">
-            Développeur Full-Stack
-          </h2>
-          <p class="mb-8 text-gray-400">
-            Je transforme les besoins métiers en solutions performantes et
-            durables.
-          </p>
-          <nav class="space-y-2">
+          <div class="mb-8">
+            <h1 class="text-5xl font-bold mb-2 gradient-text floating">
+              Amine O.
+            </h1>
+            <h2
+              class="text-xl text-gray-300 font-semibold mb-4 typing"
+              id="typewriter"
+            >
+              Développeur Full-Stack
+            </h2>
+            <p class="mb-8 text-gray-400 leading-relaxed">
+              Je transforme les besoins métiers en solutions performantes et
+              durables avec une approche moderne et créative.
+            </p>
+          </div>
+
+          <nav class="space-y-3">
             <a
               href="#about"
-              class="block font-medium text-white border-l-4 border-sky-400 pl-3"
+              class="nav-link block text-gray-400 hover:text-white pl-6 py-2 rounded transition-all duration-300"
               >À propos</a
             >
             <a
               href="#experience_section"
-              class="block text-gray-400 hover:text-white pl-3"
+              class="nav-link block text-gray-400 hover:text-white pl-6 py-2 rounded transition-all duration-300"
               >Expérience</a
             >
             <a
               href="#skills_section"
-              class="block text-gray-400 hover:text-white pl-3"
+              class="nav-link block text-gray-400 hover:text-white pl-6 py-2 rounded transition-all duration-300"
               >Compétences</a
             >
             <a
               href="#projects_section"
-              class="block text-gray-400 hover:text-white pl-3"
+              class="nav-link block text-gray-400 hover:text-white pl-6 py-2 rounded transition-all duration-300"
               >Projets</a
             >
             <a
               href="#certifications_section"
-              class="block text-gray-400 hover:text-white pl-3"
+              class="nav-link block text-gray-400 hover:text-white pl-6 py-2 rounded transition-all duration-300"
               >Certifications</a
             >
-            <a href="#form" class="block text-gray-400 hover:text-white pl-3"
+            <a
+              href="#form"
+              class="nav-link block text-gray-400 hover:text-white pl-6 py-2 rounded transition-all duration-300"
               >Contact</a
             >
           </nav>
         </div>
-        <div class="flex space-x-4 mt-8">
-          <a href="https://github.com/Alouzou" target="_blank"
-            ><i class="fab fa-github text-2xl"></i
-          ></a>
-          <a href="https://www.linkedin.com/in/amine-ouzou/" target="_blank"
-            ><i class="fab fa-linkedin text-2xl"></i
-          ></a>
+
+        <div class="flex space-x-6 mt-8">
+          <a
+            href="https://github.com/Alouzou"
+            target="_blank"
+            class="text-2xl hover:text-sky-400 transition-all duration-300 hover:scale-125"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/amine-ouzou/"
+            target="_blank"
+            class="text-2xl hover:text-sky-400 transition-all duration-300 hover:scale-125"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="mailto:contact@example.com"
+            class="text-2xl hover:text-sky-400 transition-all duration-300 hover:scale-125"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
         </div>
       </aside>
-      <main class="flex-1 p-8 space-y-16 md:ml-[33.333333%]">
-        <section id="about">
-          <h2 class="text-3xl font-bold mb-4 text-sky-400">À propos</h2>
-          <p class="text-gray-300 mb-2"></p>
-          <p class="text-gray-300">
-            Développeur web junior orienté backend, je suis passionné par la
-            création de solutions fiables et évolutives. J’accorde une grande
-            importance à la compréhension du produit et de ses enjeux business
-            avant d’écrire la moindre ligne de code, afin de proposer des
-            solutions qui répondent réellement aux besoins. Curieux et motivé,
-            je m’efforce de perfectionner mes compétences en continu. Mon
-            objectif est de concevoir des applications performantes et
-            intuitives, avec une architecture solide et des interfaces modernes,
-            tout en respectant les bonnes pratiques du développement web.
-          </p>
-        </section>
-        <section id="experience_section">
-          <h2 class="text-3xl font-bold mb-4 text-sky-400">Expérience</h2>
-          <div class="space-y-8">
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <div class="flex flex-col mb-2">
-                <span class="text-gray-400 md:w-1/4 font-semibold"
-                  >Mars - Juin 2024</span
-                >
 
-                <div>
-                  <span class="font-bold text-lg text-gray-100">
-                    Stagiaire en développement web ·
-                    <span class="text-sky-400">AzurDev</span></span
-                  >
-                  <a
-                    href="https://azurdev.ca/"
-                    target="_blank"
-                    class="ml-1 text-sky-400"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></a>
+      <main class="flex-1 p-8 space-y-20 md:ml-[33.333333%]">
+        <section id="about" class="slide-in">
+          <h2 class="text-4xl font-bold mb-6 gradient-text">À propos</h2>
+          <div class="progress-bar mb-6"></div>
+          <div
+            class="bg-gradient-to-r from-[#16213e]/50 to-[#22305a]/30 rounded-xl p-8 backdrop-blur-sm border border-sky-400/20"
+          >
+            <p class="text-gray-300 text-lg leading-relaxed mb-4">
+              Développeur web junior orienté backend, je suis passionné par la
+              création de solutions fiables et évolutives. J'accorde une grande
+              importance à la compréhension du produit et de ses enjeux business
+              avant d'écrire la moindre ligne de code.
+            </p>
+            <p class="text-gray-300 text-lg leading-relaxed">
+              Curieux et motivé, je m'efforce de perfectionner mes compétences
+              en continu. Mon objectif est de concevoir des applications
+              performantes et intuitives, avec une architecture solide et des
+              interfaces modernes, tout en respectant les bonnes pratiques du
+              développement web.
+            </p>
+          </div>
+        </section>
+
+        <section id="experience_section" class="slide-in">
+          <h2 class="text-4xl font-bold mb-6 gradient-text">Expérience</h2>
+          <div class="progress-bar mb-8"></div>
+          <div class="space-y-8">
+            <div
+              class="bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div
+                class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4"
+              >
+                <div class="mb-4 lg:mb-0">
+                  <h3 class="font-bold text-xl text-gray-100 mb-2">
+                    Freelance - Développeur web
+                  </h3>
                 </div>
+                <span
+                  class="text-gray-400 font-semibold bg-gray-800/50 px-4 py-2 rounded-full"
+                >
+                  Depuis septembre 2024
+                </span>
               </div>
-              <p class="text-gray-300 mb-3">
-                Réalisation d’un développement full stack pour un jeu vidéo
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Création de sites web sur mesure pour des entreprises locales et
+                des professionnels. Accompagnement complet depuis l'analyse des
+                besoins jusqu'à la mise en ligne, en mettant l'accent sur
+                l'amélioration de la visibilité digitale et l'acquisition de
+                nouveaux clients.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >HTML/CSS</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >JavaScript</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >Tailwind</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >Angular</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >Wordpress</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >SEO</span
+                >
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div
+                class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4"
+              >
+                <div class="mb-4 lg:mb-0">
+                  <h3 class="font-bold text-xl text-gray-100 mb-2">
+                    Stagiaire en développement web
+                  </h3>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-sky-400 font-semibold text-lg"
+                      >AzurDev</span
+                    >
+                    <a
+                      href="https://azurdev.ca/"
+                      target="_blank"
+                      class="text-sky-400 hover:text-sky-300 transition-colors"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                </div>
+                <span
+                  class="text-gray-400 font-semibold bg-gray-800/50 px-4 py-2 rounded-full"
+                >
+                  Mars - Juin 2024
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Réalisation d'un développement full stack pour un jeu vidéo
                 destiné à la plateforme de divertissement hospitalière Evan.
-                Conception et implémentation de l’interface utilisateur ainsi
+                Conception et implémentation de l'interface utilisateur ainsi
                 que de la logique du jeu en HTML, CSS et JavaScript.
                 Optimisation et adaptation du jeu pour assurer une compatibilité
                 avec des environnements legacy, y compris les anciennes versions
                 de Chrome (≤ v38).
               </p>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-3">
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
                   >HTML/CSS</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
                   >JavaScript</span
                 >
-
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Legacy</span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
+                  >Legacy Support</span
                 >
               </div>
             </div>
 
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <div class="flex flex-col mb-2">
-                <span class="text-gray-400 md:w-1/4 font-semibold"
-                  >2021 — 2024</span
-                >
-                <div>
-                  <span class="font-bold text-lg text-gray-100"
-                    >Tuteur en programmation ·
-                    <span class="text-sky-400">Cégep de Rosemont</span></span
-                  >
-                  <a
-                    href="https://www.crosemont.qc.ca/"
-                    target="_blank"
-                    class="ml-1 text-sky-400"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></a>
+            <div
+              class="bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div
+                class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4"
+              >
+                <div class="mb-4 lg:mb-0">
+                  <h3 class="font-bold text-xl text-gray-100 mb-2">
+                    Tuteur en programmation
+                  </h3>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-sky-400 font-semibold text-lg"
+                      >Cégep de Rosemont</span
+                    >
+                    <a
+                      href="https://www.crosemont.qc.ca/"
+                      target="_blank"
+                      class="text-sky-400 hover:text-sky-300 transition-colors"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <p class="text-gray-300 mb-3">
-                Fournir un soutien personnalisé aux étudiants rencontrant des
-                difficultés dans leurs cours d’informatique, en les guidant dans
-                la compréhension des concepts, la résolution d’exercices
-                pratiques et l’acquisition de méthodes de travail efficaces.
-              </p>
-              <div class="flex flex-wrap gap-2">
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="text-gray-400 font-semibold bg-gray-800/50 px-4 py-2 rounded-full"
+                >
+                  2021 — 2024
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Fournir un soutien personnalisé aux étudiants rencontrant des
+                difficultés dans leurs cours d'informatique, en les guidant dans
+                la compréhension des concepts, la résolution d'exercices
+                pratiques et l'acquisition de méthodes de travail efficaces.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
                   >Java</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
                   >Python</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
                   >HTML & CSS</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-4 py-2 rounded-full text-sm cursor-pointer"
                   >JavaFX</span
                 >
               </div>
@@ -190,414 +386,704 @@
           </div>
         </section>
 
-        <section id="skills_section">
-          <h2 class="text-3xl font-bold mb-4 text-sky-400">Compétences</h2>
+        <section id="skills_section" class="slide-in">
+          <h2 class="text-4xl font-bold mb-6 gradient-text">Compétences</h2>
+          <div class="progress-bar mb-8"></div>
           <div class="space-y-8">
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-sky-300">Frontend</h3>
-              <ul class="flex flex-wrap gap-3 text-gray-200">
-                <li class="bg-[#16213e] rounded px-4 py-2">HTML CSS</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Angular</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">JavaScript</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Tailwind</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Bootstrap</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">TypeScript</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-sky-300">Backend</h3>
-              <ul class="flex flex-wrap gap-3 text-gray-200">
-                <li class="bg-[#16213e] rounded px-4 py-2">Java</li>
-<li class="bg-[#16213e] rounded px-4 py-2">Kotlin</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">SpringBoot</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Spring Web</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Python</li>
-                
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-sky-300">
-                Bases de données
+            <div
+              class="bg-gradient-to-r from-[#16213e]/50 to-[#22305a]/30 rounded-xl p-8 border border-sky-400/20"
+            >
+              <h3
+                class="text-2xl font-semibold mb-6 text-sky-300 flex items-center"
+              >
+                <i class="fas fa-palette mr-3"></i>Frontend
               </h3>
-              <ul class="flex flex-wrap gap-3 text-gray-200">
-                <li class="bg-[#16213e] rounded px-4 py-2">MySQL</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">MongoDB</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">PostgreSQL</li>
-              </ul>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >HTML CSS</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Tailwind</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >JavaScript</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Angular</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Bootstrap</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >TypeScript</span
+                >
+              </div>
             </div>
 
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-sky-300">DevOps</h3>
-              <ul class="flex flex-wrap gap-3 text-gray-200">
-                <li class="bg-[#16213e] rounded px-4 py-2">Docker</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">GitHub Actions</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Vercel</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Netlify</li>
-              </ul>
+            <div
+              class="bg-gradient-to-r from-[#16213e]/50 to-[#22305a]/30 rounded-xl p-8 border border-sky-400/20"
+            >
+              <h3
+                class="text-2xl font-semibold mb-6 text-sky-300 flex items-center"
+              >
+                <i class="fas fa-server mr-3"></i>Backend
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Java</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >SpringBoot</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Spring Web</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Python</span
+                >
+              </div>
             </div>
 
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-sky-300">Outils</h3>
-              <ul class="flex flex-wrap gap-3 text-gray-200">
-                <li class="bg-[#16213e] rounded px-4 py-2">Git & GitHub</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Wordpress</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Figma</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Postman</li>
-                <li class="bg-[#16213e] rounded px-4 py-2">Linux</li>
-              </ul>
+            <div
+              class="bg-gradient-to-r from-[#16213e]/50 to-[#22305a]/30 rounded-xl p-8 border border-sky-400/20"
+            >
+              <h3
+                class="text-2xl font-semibold mb-6 text-sky-300 flex items-center"
+              >
+                <i class="fas fa-database mr-3"></i>Bases de données
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >MySQL</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >MongoDB</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >PostgreSQL</span
+                >
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-r from-[#16213e]/50 to-[#22305a]/30 rounded-xl p-8 border border-sky-400/20"
+            >
+              <h3
+                class="text-2xl font-semibold mb-6 text-sky-300 flex items-center"
+              >
+                <i class="fas fa-cloud mr-3"></i>DevOps & Outils
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Docker</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >GitHub Actions</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Git & GitHub</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Vercel</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Figma</span
+                >
+                <span
+                  class="skill-tag bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-full px-6 py-3 text-gray-200 cursor-pointer border border-sky-400/30"
+                  >Postman</span
+                >
+              </div>
             </div>
           </div>
         </section>
-        <section id="projects_section">
-          <h2 class="text-3xl font-bold mb-4 text-sky-400">Projets</h2>
-          <div class="space-y-6">
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <h3 class="text-xl font-semibold mb-2">Votely</h3>
-              <p class="text-gray-300 mb-2">Coming Soon...</p>
-              <div class="flex flex-wrap gap-x-2 gap-y-2">
+
+        <section id="projects_section" class="slide-in">
+          <h2 class="text-4xl font-bold mb-6 gradient-text">Projets</h2>
+          <div class="progress-bar mb-8"></div>
+          <div class="grid gap-8 md:grid-cols-2">
+            <div
+              class="bg-gradient-to-br from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20 glow"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-white">Votely</h3>
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-sm font-semibold"
+                >
+                  En cours
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Application de vote en temps réel avec authentification
+                sécurisée et interface moderne.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Angular</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >SpringBoot</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Java</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >MySQL</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Docker</span
                 >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Spring Security</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >JPA/HibernateJWT</span
-                >
-
-                <a
-                  href="https://github.com/Alouzou/API-Gestion-de-stock"
-                  target="_blank"
-                  class="text-sky-400 hover:underline"
-                  ><i
-                    class="fas fa-arrow-up-right-from-square ml-1 text-sky-400"
-                  ></i
-                ></a>
               </div>
+              <a
+                href="https://github.com/Alouzou/API-Gestion-de-stock"
+                target="_blank"
+                class="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
+              >
+                <i class="fab fa-github mr-2"></i>
+                Voir le code
+              </a>
             </div>
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <h3 class="text-xl font-semibold mb-2">Email assistant</h3>
-              <p class="text-gray-300 mb-2">Coming Soon...</p>
-              <div class="flex flex-wrap gap-x-2 gap-y-2">
+
+            <!-- <div
+              class="bg-gradient-to-br from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-white">
+                  Email Assistant
+                </h3>
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-sm font-semibold"
+                >
+                  En cours
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">En cours...</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Angular</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >SpringBoot</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
+                  >Spring AI</span
+                >
+              </div>
+            </div> -->
+            <div
+              class="bg-gradient-to-br from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-white">
+                  Boucherie Jean Talon
+                </h3>
+                <span
+                  class="bg-gradient-to-r from-green-400 to-emerald-500 text-black px-3 py-1 rounded-full text-sm font-semibold"
+                >
+                  Terminé
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Site vitrine moderne pour une boucherie artisanale visant à
+                renforcer sa présence digitale et attirer une nouvelle
+                clientèle. L'objectif était d'améliorer le référencement local,
+                présenter les produits de qualité et faciliter la prise de
+                contact pour augmenter les ventes en magasin.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
+                  >HTML CSS</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
+                  >JavaScript</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
+                  >Tailwind</span
+                >
+              </div>
+              <div class="flex space-x-4">
+                <a
+                  href="https://alouzou.github.io/Boucherie-Jean-Talon-/"
+                  target="_blank"
+                  class="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
+                >
+                  <i class="fas fa-external-link-alt mr-2"></i>
+                  Voir le site
+                </a>
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-br from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-white">
+                  Gestion de Stock
+                </h3>
+                <span
+                  class="bg-gradient-to-r from-green-400 to-emerald-500 text-black px-3 py-1 rounded-full text-sm font-semibold"
+                >
+                  Terminé
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                API REST complète pour la gestion de stock avec authentification
+                JWT et documentation Swagger.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Java</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
+                  >SpringBoot</span
+                >
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >MySQL</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Docker</span
                 >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Spring Security</span
+              </div>
+              <div class="flex space-x-4">
+                <a
+                  href="https://github.com/Alouzou/API-Gestion-de-stock"
+                  target="_blank"
+                  class="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
                 >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >JPA/HibernateJWT</span
-                >
+                  <i class="fab fa-github mr-2"></i>
+                  Code source
+                </a>
+              </div>
+            </div>
 
-                <a
-                  href="https://github.com/Alouzou/API-Gestion-de-stock"
-                  target="_blank"
-                  class="text-sky-400 hover:underline"
-                  ><i
-                    class="fas fa-arrow-up-right-from-square ml-1 text-sky-400"
-                  ></i
-                ></a>
+            <div
+              class="bg-gradient-to-br from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-white">Galaxy</h3>
+                <span
+                  class="bg-gradient-to-r from-green-400 to-emerald-500 text-black px-3 py-1 rounded-full text-sm font-semibold"
+                >
+                  Terminé
+                </span>
               </div>
-            </div>
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <h3 class="text-xl font-semibold mb-2">Gestion de stock</h3>
-              <p class="text-gray-300 mb-2">
-                Gestion de stock a été conçu pour faciliter la gestion des
-                produits, des stocks et des mouvements dans un environnement de
-                vente. Il permet aux utilisateurs de suivre l'inventaire,
-                d'ajouter ou de retirer des produits, ainsi que de générer des
-                rapports sur les stocks.
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Jeu simple mais stimulant basé sur la perspective, développé en
+                Python avec Kivy.
               </p>
-              <div class="flex flex-wrap gap-x-2 gap-y-2">
+              <div class="flex flex-wrap gap-2 mb-4">
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Java</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >SpringBoot</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >JPA/Hibernate</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >MySQL</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Docker</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Spring Security</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >JWT</span
-                >
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
-                  >Maven</span
-                >
-                <a
-                  href="https://github.com/Alouzou/API-Gestion-de-stock"
-                  target="_blank"
-                  class="text-sky-400 hover:underline"
-                  ><i
-                    class="fas fa-arrow-up-right-from-square ml-1 text-sky-400"
-                  ></i
-                ></a>
-              </div>
-            </div>
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <h3 class="text-xl font-semibold mb-2">Galaxy</h3>
-              <p class="text-gray-300 mb-2">
-                Galaxy est un jeu simple mais stimulant basé sur la perspective,
-                développé en Python à l’aide du framework Kivy. Le but du jeu
-                est de naviguer à travers un terrain infini généré avec
-                différentes cases. Le joueur doit rester sur les cases
-                éclairées, sinon il perd la partie.
-              </p>
-              <div class="flex flex-wrap gap-x-2 gap-y-2">
-                <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Python</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >Kivy</span
                 >
-                <a
-                  href="https://github.com/Alouzou/galaxion"
-                  target="_blank"
-                  class="text-sky-400 hover:underline"
-                  ><i
-                    class="fas fa-arrow-up-right-from-square ml-1 text-sky-400"
-                  ></i
-                ></a>
               </div>
+              <a
+                href="https://github.com/Alouzou/galaxion"
+                target="_blank"
+                class="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
+              >
+                <i class="fab fa-github mr-2"></i>
+                Code source
+              </a>
             </div>
-            <div class="bg-[#16213e] rounded-lg p-6 shadow">
-              <h3 class="text-xl font-semibold mb-2">Triple Triad</h3>
-              <p class="text-gray-300 mb-2">
-                Développement du jeu de cartes Triple Triad dans le cadre de mon
-                stage de fin d’études, intégré à la plateforme Evan pour
-                téléviseurs LG en milieu hospitalier. Le projet a porté une
-                attention particulière à la compatibilité avec les navigateurs
-                legacy, bien que l’expérience soit optimisée exclusivement pour
-                téléviseurs.
-              </p>
-              <div class="flex flex-wrap gap-x-2 gap-y-2">
+
+            <div
+              class="bg-gradient-to-br from-[#16213e] to-[#22305a] rounded-xl p-8 shadow-xl card-hover border border-sky-400/20 md:col-span-2"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-white">Triple Triad</h3>
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="bg-gradient-to-r from-blue-400 to-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                >
+                  Déployé
+                </span>
+              </div>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Jeu de cartes interactif développé pour la plateforme Evan,
+                optimisé pour téléviseurs LG en milieu hospitalier avec
+                compatibilité legacy.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >HTML</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >CSS</span
                 >
                 <span
-                  class="bg-[#22305a] text-sky-200 px-3 py-1 rounded text-sm"
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
                   >JavaScript</span
                 >
-                <a
-                  href="https://evan.adazur.com/games/triad/"
-                  target="_blank"
-                  class="text-sky-400 hover:underline"
-                  ><i
-                    class="fas fa-arrow-up-right-from-square ml-1 text-sky-400"
-                  ></i
-                ></a>
+                <span
+                  class="skill-tag bg-[#22305a] text-sky-200 px-3 py-1 rounded-full text-sm"
+                  >Legacy Support</span
+                >
               </div>
             </div>
           </div>
         </section>
-        <section id="certifications_section">
-          <h2 class="text-3xl font-bold mb-4 text-sky-400">Certifications</h2>
-          <ul class="space-y-4">
-            <li
-              class="bg-[#16213e] rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between"
+
+        <section id="certifications_section" class="slide-in">
+          <h2 class="text-4xl font-bold mb-6 gradient-text">Certifications</h2>
+          <div class="progress-bar mb-8"></div>
+          <div class="space-y-6">
+            <div
+              class="bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-xl p-8 card-hover border border-sky-400/20"
             >
-              <div>
-                <span class="font-semibold text-gray-100"
-                  >Docker Foundations Professional Certificate</span
-                >
-                <span class="block text-gray-400 text-sm">Janvier 2025</span>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-bold text-xl text-gray-100 mb-2">
+                    Docker Foundations Professional Certificate
+                  </h3>
+                  <span class="text-gray-400 flex items-center">
+                    <i class="fas fa-calendar mr-2"></i>
+                    Janvier 2025
+                  </span>
+                </div>
+                <div class="bg-sky-400/20 p-4 rounded-full">
+                  <i class="fab fa-docker text-3xl text-sky-400"></i>
+                </div>
               </div>
-            </li>
-            <li
-              class="bg-[#16213e] rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between"
+            </div>
+
+            <div
+              class="bg-gradient-to-r from-[#16213e] to-[#22305a] rounded-xl p-8 card-hover border border-sky-400/20"
             >
-              <div>
-                <span class="font-semibold text-gray-100"
-                  >Fonds d’investissement au Canada (FIC)</span
-                >
-                <span class="block text-gray-400 text-sm"
-                  >Aout 2025 - Permis de fonds d'investissement</span
-                >
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-bold text-xl text-gray-100 mb-2">
+                    Fonds d'investissement au Canada (FIC)
+                  </h3>
+                  <span class="text-gray-400 flex items-center">
+                    <i class="fas fa-calendar mr-2"></i>
+                    Août 2025 - Permis de fonds d'investissement
+                  </span>
+                  <p class="text-gray-300 mt-2">
+                    Ma double expertise en développement et en produits
+                    financiers me permet d'être à l'aise là où les enjeux
+                    technologiques rencontrent les produits financiers.
+                  </p>
+                </div>
+                <div class="bg-green-400/20 p-4 rounded-full">
+                  <i class="fas fa-chart-line text-3xl text-green-400"></i>
+                </div>
               </div>
-            </li>
-            <!-- <li
-              class="bg-[#16213e] rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between"
-            >
-              <div>
-                <span class="font-semibold text-gray-100"
-                  >Scrum Master Certifié</span
-                >
-                <span class="block text-gray-400 text-sm"
-                  >Prévue : Juin 2026</span
-                >
-              </div>
-            </li> -->
-          </ul>
+            </div>
+          </div>
         </section>
-        <section id="form">
-          <h2 class="text-3xl font-bold mb-4 text-sky-400">Contact</h2>
-          <form
-            class="space-y-4 max-w-md"
-            action="https://api.web3forms.com/submit"
-            method="POST"
+
+        <section id="form" class="slide-in">
+          <h2 class="text-4xl font-bold mb-6 gradient-text">Contact</h2>
+          <div class="progress-bar mb-8"></div>
+          <div
+            class="bg-gradient-to-r from-[#16213e]/50 to-[#22305a]/30 rounded-xl p-8 backdrop-blur-sm border border-sky-400/20"
           >
-            <input
-              type="hidden"
-              name="access_key"
-              value="28ab0d95-ff9b-4f53-bab3-a48877141862"
-            />
-            <div>
-              <label class="block mb-1 text-gray-200" for="name">Nom</label>
-              <input
-                class="w-full rounded px-3 py-2 bg-[#0a1120] border border-gray-700 text-gray-100"
-                type="text"
-                id="name"
-                type="text"
-                name="name"
-                required
-                placeholder="Votre nom"
-              />
-            </div>
-            <div>
-              <label class="block mb-1 text-gray-200" for="email">Email</label>
-              <input
-                class="w-full rounded px-3 py-2 bg-[#0a1120] border border-gray-700 text-gray-100"
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="Votre email"
-              />
-            </div>
-            <div>
-              <label class="block mb-1 text-gray-200" for="message"
-                >Message</label
-              >
-              <textarea
-                class="w-full rounded px-3 py-2 bg-[#0a1120] border border-gray-700 text-gray-100"
-                id="message"
-                name="message"
-                rows="4"
-                placeholder="Votre message"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              class="bg-sky-400 text-[#0a1120] font-semibold px-6 py-2 rounded hover:bg-sky-300 transition"
+            <p class="text-gray-300 mb-8 text-lg">
+              Intéressé par une collaboration ? N'hésitez pas à me contacter !
+            </p>
+            <form
+              class="space-y-6 max-w-2xl"
+              action="https://api.web3forms.com/submit"
+              method="POST"
             >
-              Envoyer
-            </button>
-          </form>
+              <input
+                type="hidden"
+                name="access_key"
+                value="28ab0d95-ff9b-4f53-bab3-a48877141862"
+              />
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    class="block mb-3 text-gray-200 font-semibold"
+                    for="name"
+                  >
+                    <i class="fas fa-user mr-2"></i>Nom complet
+                  </label>
+                  <input
+                    class="w-full rounded-lg px-4 py-3 bg-[#0a1120] border border-gray-700 text-gray-100 focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 transition-all duration-300"
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Votre nom complet"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block mb-3 text-gray-200 font-semibold"
+                    for="email"
+                  >
+                    <i class="fas fa-envelope mr-2"></i>Email
+                  </label>
+                  <input
+                    class="w-full rounded-lg px-4 py-3 bg-[#0a1120] border border-gray-700 text-gray-100 focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 transition-all duration-300"
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="votre.email@exemple.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block mb-3 text-gray-200 font-semibold"
+                  for="subject"
+                >
+                  <i class="fas fa-tag mr-2"></i>Sujet
+                </label>
+                <input
+                  class="w-full rounded-lg px-4 py-3 bg-[#0a1120] border border-gray-700 text-gray-100 focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 transition-all duration-300"
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder="Objet de votre message"
+                />
+              </div>
+              <div>
+                <label
+                  class="block mb-3 text-gray-200 font-semibold"
+                  for="message"
+                >
+                  <i class="fas fa-comment mr-2"></i>Message
+                </label>
+                <textarea
+                  class="w-full rounded-lg px-4 py-3 bg-[#0a1120] border border-gray-700 text-gray-100 focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 transition-all duration-300 resize-none"
+                  id="message"
+                  name="message"
+                  rows="6"
+                  placeholder="Décrivez votre projet ou votre demande..."
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="bg-gradient-to-r from-sky-400 to-cyan-400 text-[#0a1120] font-bold px-8 py-4 rounded-lg hover:from-sky-300 hover:to-cyan-300 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <i class="fas fa-paper-plane"></i>
+                <span>Envoyer le message</span>
+              </button>
+            </form>
+
+            <div class="mt-12 grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div
+                  class="bg-sky-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-envelope text-sky-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-white mb-2">Email</h4>
+                <p class="text-gray-400">contact@example.com</p>
+              </div>
+              <div class="text-center">
+                <div
+                  class="bg-sky-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-map-marker-alt text-sky-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-white mb-2">Localisation</h4>
+                <p class="text-gray-400">Montréal, QC, Canada</p>
+              </div>
+              <div class="text-center">
+                <div
+                  class="bg-sky-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-phone text-sky-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-white mb-2">Disponibilité</h4>
+                <p class="text-gray-400">Ouvert aux opportunités</p>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </div>
-  </body>
-  <script src="index.js" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const sections = [
-        { id: "about", nav: "À propos" },
-        { id: "skills_section", nav: "Compétences" },
-        { id: "projects_section", nav: "Projets" },
-        { id: "form", nav: "Contact" },
-        { id: "experience_section", nav: "Expérience" },
-        { id: "certifications_section", nav: "Certifications" },
-      ];
-      const navLinks = Array.from(document.querySelectorAll("nav a"));
 
-      function onScroll() {
-        let current = "";
-        for (const section of sections) {
-          const el = document.getElementById(section.id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 100 && rect.bottom > 100) {
-              current = section.id;
+    <script>
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+
+            const progressBar = entry.target.querySelector(".progress-bar");
+            if (progressBar) {
+              setTimeout(() => {
+                progressBar.classList.add("animate");
+              }, 300);
             }
           }
-        }
-        navLinks.forEach((link) => {
-          if (link.getAttribute("href") === "#" + current) {
-            link.classList.add(
-              "font-medium",
-              "text-white",
-              "border-l-4",
-              "border-sky-400"
-            );
-            link.classList.remove("text-gray-400");
-          } else {
-            link.classList.remove(
-              "font-medium",
-              "text-white",
-              "border-l-4",
-              "border-sky-400"
-            );
-            link.classList.add("text-gray-400");
-          }
         });
+      }, observerOptions);
+
+      document.querySelectorAll(".slide-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = [
+          { id: "about", nav: "À propos" },
+          { id: "experience_section", nav: "Expérience" },
+          { id: "skills_section", nav: "Compétences" },
+          { id: "projects_section", nav: "Projets" },
+          { id: "certifications_section", nav: "Certifications" },
+          { id: "form", nav: "Contact" },
+        ];
+        const navLinks = Array.from(document.querySelectorAll("nav a"));
+
+        function updateActiveNav() {
+          let current = "";
+          const scrollPosition = window.scrollY + 100;
+
+          for (const section of sections) {
+            const el = document.getElementById(section.id);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              const offsetTop = window.scrollY + rect.top;
+
+              if (
+                scrollPosition >= offsetTop &&
+                scrollPosition < offsetTop + el.offsetHeight
+              ) {
+                current = section.id;
+              }
+            }
+          }
+
+          navLinks.forEach((link) => {
+            if (link.getAttribute("href") === "#" + current) {
+              link.classList.add("active", "text-white", "font-semibold");
+              link.classList.remove("text-gray-400");
+            } else {
+              link.classList.remove("active", "text-white", "font-semibold");
+              link.classList.add("text-gray-400");
+            }
+          });
+        }
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        window.addEventListener("scroll", updateActiveNav);
+        updateActiveNav();
+      });
+
+      const typewriterText = "Développeur Full-Stack";
+      const typewriterElement = document.getElementById("typewriter");
+      let i = 0;
+
+      function typeWriter() {
+        if (i < typewriterText.length) {
+          typewriterElement.textContent = typewriterText.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 100);
+        } else {
+          setTimeout(() => {
+            typewriterElement.classList.remove("typing");
+          }, 1000);
+        }
       }
 
-      window.addEventListener("scroll", onScroll);
-      onScroll();
-    });
-  </script>
+      setTimeout(() => {
+        typewriterElement.textContent = "";
+        typewriterElement.classList.add("typing");
+        typeWriter();
+      }, 1500);
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (e) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalContent = submitBtn.innerHTML;
+
+        submitBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i><span>Envoi en cours...</span>';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+          submitBtn.innerHTML =
+            '<i class="fas fa-check"></i><span>Message envoyé !</span>';
+          submitBtn.classList.remove("from-sky-400", "to-cyan-400");
+          submitBtn.classList.add("from-green-400", "to-emerald-400");
+
+          setTimeout(() => {
+            submitBtn.innerHTML = originalContent;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("from-green-400", "to-emerald-400");
+            submitBtn.classList.add("from-sky-400", "to-cyan-400");
+          }, 2000);
+        }, 1000);
+      });
+
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        const backgroundElements = document.querySelectorAll(".fixed div");
+
+        backgroundElements.forEach((el, index) => {
+          const speed = (index + 1) * 0.3;
+          el.style.transform = `translateY(${rate * speed}px)`;
+        });
+      });
+
+      document.querySelectorAll(".skill-tag").forEach((tag) => {
+        tag.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.1) rotate(2deg)";
+        });
+
+        tag.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1) rotate(0deg)";
+        });
+      });
+    </script>
+  </body>
 </html>
